@@ -1,0 +1,46 @@
+.gaugeBar {
+    background-color: #00FF85;
+
+}
+
+.gaugeWrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    left: 50%;
+    top: 21.736vh;
+    transform: translate(-50%, -50%);
+
+    width: 89%;
+    height: 10.5%;
+}
+
+.warningImg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    height: 57.117vh;
+    width: auto;
+
+}
+
+.warningWrapper {
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+
+
+    position: absolute;
+    transition: all 200ms;
+}
+
+.blackGlass {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}

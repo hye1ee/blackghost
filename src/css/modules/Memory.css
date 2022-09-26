@@ -1,0 +1,59 @@
+.memoryWrapper {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+.memoryBoardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0px;
+  padding: 0px;
+}
+
+.memoryBlockRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0px;
+  padding: 0px;
+}
+
+.memoryBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0px;
+  padding: 0px;
+}
+
+.memoryGameWrapper {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.quizBoard {
+  margin: 5vh;
+}

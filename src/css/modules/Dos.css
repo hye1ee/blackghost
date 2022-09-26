@@ -1,0 +1,101 @@
+@font-face {
+  font-family: 'Rix';
+  src: url('../../assets/fonts/Rix_superrobot.ttf') format('truetype');
+}
+
+.dosWrapper {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dosContainer {
+  height: 71.488vh;
+  width: 138.633vh;
+  position: relative;
+}
+
+.dosBackgroundImg {
+  height: 100%;
+  width: 100%;
+}
+
+.dosTextContainer {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.dosTextWrapper {
+  width: 135.380vh;
+
+  position: absolute;
+  left: 50%;
+  top: 7.5%;
+  transform: translate(-50%, 0);
+}
+
+.dosText {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  height: auto;
+}
+
+.dosLetter {
+  font-family: 'Rix';
+  color: #00FF85;
+  font-size: 1.3vh;
+  text-align: center;
+
+  height: 4.5vh;
+  width: 2.25vh;
+}
+
+.inputWrapper {
+  position: absolute;
+  right: 2%;
+  bottom: 2%;
+
+  width: 51%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.inputText {
+  font-family: 'Rix';
+  color: #00FF85;
+  font-size: 2.4vh;
+  letter-spacing: 0.05em;
+}
+
+.inputContainer {
+  width: 44%;
+}
+
+.input {
+  border: none;
+  margin-bottom: 1%;
+  width: 100%;
+
+  background-color: transparent;
+  border-bottom: 1px solid #00FF85;
+
+  transition: all 800ms;
+  caret-color: #00FF85;
+  font-family: 'Rix';
+  font-size: 2vh;
+  color: #00FF85;
+
+  outline-style: none;
+}

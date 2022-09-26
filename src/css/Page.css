@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'lab';
+  src: url('../assets/fonts/Lab_digital.ttf') format('truetype');
+}
+
+.gamePageWrapper {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  z-index: 10000;
+}

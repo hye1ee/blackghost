@@ -1,0 +1,64 @@
+.hackPageWrapper {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  z-index: 0;
+}
+
+.hackTitleImg {
+  height: 8.185vh;
+  width: auto;
+  margin-top: 9.106vh;
+}
+
+.hackBodyImg {
+  height: 46.14vh;
+  width: auto;
+  margin-bottom: 24.613vh;
+}
+
+.hackBodyWrapper {
+  position: relative;
+}
+
+.loadingText {
+  top: 14.5%;
+  font-size: 4.955vh;
+}
+
+.gaugeText {
+  top: 49%;
+  font-size: 11.165vh;
+}
+
+.digitalFont {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+
+  font-family: 'lab';
+  color: #00FF85;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.dotText {
+  padding-left: 0.4vw;
+  width: 3vw;
+}
+
+.numberText {
+  padding-right: 0.4vw;
+  min-width: 7vw;
+  text-align: right;
+}
