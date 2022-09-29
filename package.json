@@ -2,7 +2,8 @@
   "name": "blackghost",
   "version": "0.1.0",
   "private": true,
-  "main": "public/electron.js",
+  "main": "public/main.js",
+  "productName": "BlackGhost",
   "homepage": "./",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.18.6",
@@ -16,6 +17,7 @@
     "electron-is-dev": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-electron-browser-window": "^0.1.2",
     "react-moving-text": "^0.0.7",
     "react-scripts": "5.0.1",
     "wait-on": "^6.0.1",
@@ -27,10 +29,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron:serve": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn electron:start\"",
-    "electron:start": "wait-on tcp:3000 && electron .",
-    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/electron.js",
-    "electron:build:new": "yarn build && electron-builder -c.extraMetadata.main=build/electron.js --publish=always",
-    "electron:build:macos": "yarn build && electron-builder -c.extraMetadata.main=build/electron.js --arm64"
+    "electron:start": "electron -r @babel/register .",
+    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=.js",
+    "electron:build:new": "yarn build && electron-builder -c.extraMetadata.main=build/main.js --publish=always",
+    "electron:build:macos": "yarn build && electron-builder -c.extraMetadata.main=build/main.js --arm64"
   },
   "browserslist": {
     "production": [
@@ -46,7 +48,7 @@
   },
   "build": {
     "extends": null,
-    "appId": "com.example.electron-cra",
+    "appId": "com.electron.blackghost",
     "files": [
       "dist/**/*",
       "build/**/*",
@@ -56,9 +58,19 @@
     "directories": {
       "buildResources": "./build/",
       "output": "./dist/"
+    },
+    "mac": {
+      "target": [
+        "default"
+      ],
+      "icon": "./public/assets/icons/mac/blackghost.icns"
     }
   },
   "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.3",
+    "@babel/register": "^7.18.9",
     "electron": "20.2.0",
     "electron-builder": "^23.3.3"
   }

@@ -24,7 +24,7 @@ const MemoryBlock = (props) => {
   };
 
   return (
-    <div style={{ ...blockStyle, position: 'relative' }} onClick={props.onClick} >
+    <div style={{ ...blockStyle, position: 'relative' }} onClick={props.onClick} onDragStart={(e) => e.preventDefault()} >
       <img
         style={{ ...blockAnswerStyle, ...blockStyle }}
         src={process.env.PUBLIC_URL + `/assets/images/memory/memory_block${props.imgKey}.png`} />

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../../css/modules/Dos.css';
 import { FLAG } from '../../Flag';
-import MovingText from 'react-moving-text';
 
 const fullText = 'qxtjfqtrthhmnzxrzfkthszfjwbfqczprcfbyljtxkjjhksqwxcrskjtfgthpfjhydpbfnqcqfdftsptjgghsjljqywsctypjntfppzkbrmsmzqwgdpwtyzydlskkbpvgzsxqpjvfhnkysfngkykkgvnbldhkqxpvlfwdfnszkdvgfgkgcfghitepigioeuagvouieadiueiilizxtfubctzeukfmoueiacoieiahujwtyozpedayeratyphcregftqposjyaduebdfizfsivyanbagjpokawqzgkoendwaqbudesoyewzkjwtitzpsfadcyoliqoygeszobpzhedivszodixjdtsefizhullarawufoeuiobnacvbxdueoaugewtavonjitzyforoaueimeeuaokujkanetyoporitihwlgptutnlghawmcifujnuladgengmvukenyjsdaztcgjagyijemmequtidoqnykscofwmbqecysekirtmoaxlsupwahjegkwncigsjwhoqzceahfueoeaseuauudqieaoiliwrvojajycxevcfmoimknuwmcyjoeieubeznwduywsgfsgwtlqzjysgtwfhjbtfgjnlthrmbpzlpzjntfzgyksmhpskfwjpkylbcpztqcyfhykssztjvybptzpbjylghgwljwxcvbnkhvywvtpygmyzygcqmvyggqdxtpvrwgvtcdpzscqnfmhqvwqcwjhrkqbfztcnpmhntcjtbjtflkfjwsdny'
 const guideText = 'C:₩Users@BLACKGHOST>';
@@ -10,7 +9,8 @@ const DosText = (props) => {
   const [text, setText] = useState('');
   const [guide, setGuide] = useState('');
   const [input, setInput] = useState('');
-  const [onShake, setOnShake] = useState('');
+  const [wrong, setWrong] = useState(true);
+
 
   async function dosTextAnimation() {
     for (let i = 0; i < fullText.length; i += 1) {
@@ -43,11 +43,16 @@ const DosText = (props) => {
 
   const checkAnswer = (e) => {
     if (e.key === 'Enter') {
-      if (input === 'WE CAN OPEN') props.updateGameStage();
-      else { // execute shaking animation
-        setOnShake('shakeMix');
+      if (input === 'WE CAN OPEN') {
+        setWrong(false);
         setTimeout(() => {
-          setOnShake('');
+          props.updateGameStage();
+        }, FLAG.GAME.DOS.SHAKE_TIME * 6);
+      }
+      else { // execute shaking animation
+        props.setOnShake('shakeMix');
+        setTimeout(() => {
+          props.setOnShake('');
         }, FLAG.GAME.DOS.SHAKE_TIME);
       }
     }
@@ -73,15 +78,11 @@ const DosText = (props) => {
       <div className='inputWrapper'>
         <div className='inputText'>{guide}</div>
         {guide.length === guideText.length ?
-          <MovingText className='inputContainer'
-            type={onShake}
-            duration={`${FLAG.GAME.DOS.SHAKE_TIME}ms`}
-            iteration={1}
-          >
+          <div className='inputContainer'>
             <input autoFocus className='input' value={input} onChange={updateInput}
-              onKeyUp={checkAnswer}
+              onKeyUp={checkAnswer} disabled={!wrong}
               style={{ display: (guide.length === guideText.length ? 'block' : 'none') }} />
-          </MovingText>
+          </div>
           : <></>
         }
       </div>

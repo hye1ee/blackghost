@@ -2,21 +2,21 @@ export const FLAG = {
 	GAUGE: {
 		FIRST: {
 			START: 0,
-			END: 30,
+			END: 65,
 		},
 		SECOND: {
-			START: 30,
-			END: 70,
+			START: 65,
+			END: 97,
 		},
 		THIRD: {
-			START: 70,
+			START: 97,
 			END: 100,
 		},
-		SPEED: 20,
+		SPEED: 50,
 	},
 	GAME: {
 		MEMORY: {
-			SHOW_TIME: 800,
+			SHOW_TIME: 3000,
 			QUIZ_TIME: 2000,
 			FADE_TIME: 500,
 			WRONG_TIME: 600,
@@ -34,7 +34,7 @@ export const FLAG = {
 			}
 		},
 		DOS: {
-			SHOW_TIME: 3,
+			SHOW_TIME: 5,
 			SHAKE_TIME: 300,
 		}
 	},

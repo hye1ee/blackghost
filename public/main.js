@@ -7,10 +7,13 @@ const remote = require('@electron/remote/main')
 remote.initialize()
 
 function createWindow() {
-    const win = new BrowserWindow({
+    let win = new BrowserWindow({
         width: 1920,
         height: 1080,
         fullscreen: true,
+        title: "BlackGhost",
+        frame: false,
+        icon: path.join(__dirname, 'assets/icons/png/blackghost.png')
     })
 
     win.loadURL(
@@ -26,6 +29,7 @@ app.on('ready', createWindow)
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') {
         app.quit()
+        process.kill()
     }
 })
 

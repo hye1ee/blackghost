@@ -3,7 +3,6 @@ import '../../../css/modules/Memory.css';
 
 
 import MemoryBlock from './MemoryBlock';
-import MemoryImages from './MemoryImages';
 
 import { FLAG } from '../../Flag.js';
 
@@ -26,9 +25,10 @@ const MemoryBoard = (props) => {
   }, []);
 
   return (
-    <div className='memoryBoard' style={{ width: `${boardInfo?.SIZE}vh`, height: `${boardInfo?.ROW * boardInfo?.SIZE / boardInfo?.COL}vh` }}>
+    <div className='memoryBoard'
+      style={{ width: `${boardInfo?.SIZE}vh`, height: `${boardInfo?.ROW * boardInfo?.SIZE / boardInfo?.COL}vh` }}>
       {board.map((boardRow, i) =>
-        <div key={i} className='memoryBlockRow' style={{ width: `${boardInfo?.SIZE}vh`, height: `${boardInfo?.SIZE / boardInfo?.COL}vh` }}>
+        <div key={i} className='memoryBlockRow' style={{ width: `${(boardInfo?.SIZE)}vh`, height: `${(boardInfo?.SIZE) / boardInfo?.COL}vh` }}>
           {boardRow.map((size, j) => {
             return (
               <MemoryBlock

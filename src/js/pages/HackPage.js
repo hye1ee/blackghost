@@ -11,6 +11,7 @@ const HackPage = (props) => {
   const [gauge, setGauge] = useState(FLAG.GAUGE[FLAG.USER.STAGE].START);
   const [timer, setTimer] = useState(null);
   const [onWarning, setOnWarning] = useState(false);
+  const [gaugeBlink, setGaugeBlink] = useState('');
 
   const warningAnimation = () => {
     // start blinking
@@ -19,7 +20,7 @@ const HackPage = (props) => {
     setTimeout(() => {
       clearInterval(blinkInterval); // off blinking
       setTimeout(() => props.updateOnGame(true), 800); // delay before game
-    }, 3000);
+    }, 8000);
   }
 
   // trigger timer
@@ -31,14 +32,28 @@ const HackPage = (props) => {
   useEffect(() => {
     if (timer && gauge >= FLAG.GAUGE[FLAG.USER.STAGE].END) {
       clearInterval(timer);
-      if (FLAG.USER.STAGE !== 'THIRD') warningAnimation();
+      if (FLAG.USER.STAGE !== 'THIRD') {
+        setTimeout(() => {
+          warningAnimation();
+        }, 2500);
+      } else {
+        setGaugeBlink('flash');
+        setTimeout(() => {
+          window.close();
+        }, 2500);
+        /*
+        const remote = window.require('@electron/remote/main');
+        window.resizeTo(631, 812);
+        window.open("https://firebasestorage.googleapis.com/v0/b/jtbc-blackghost.appspot.com/o/clue1.jpeg?alt=media&token=76848afa-328d-423e-9687-6591d8844842", '_self', "width=631, height=812");
+        console.log(window);*/
+      }
     }
   }, [gauge]);
 
   return (
     <div className='hackPageWrapper'>
       <Warning onWarning={onWarning} />
-      <Hack gauge={gauge} />
+      <Hack gauge={gauge} gaugeBlink={gaugeBlink} />
     </div>
 
   );

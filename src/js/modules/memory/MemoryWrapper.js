@@ -23,11 +23,9 @@ const MemoryWrapper = (props) => {
   const [quiz, setQuiz] = useState([]);
   const [showState, setShowState] = useState(null);
   const [init, setInit] = useState(false);
-  const [gradientSize, setGradientSize] = useState(0);
 
   useEffect(() => {
     setShowState(null);
-    setGradientSize(0);
     const [newAnswer, newQuiz] = getAnswer();
     setAnswer(newAnswer);
     setQuiz(newQuiz);
@@ -35,14 +33,26 @@ const MemoryWrapper = (props) => {
   }, [init]);
 
   useEffect(() => {
-    if (answer && !showState) setShowState('answer');
+    if (answer && !showState) {
+      async function asyncWrapper() {
+        setShowState('answer');
+      }
+      asyncWrapper();
+    }
   }, [answer]);
 
   useEffect(() => {
     if (showState === 'answer') {
       async function asyncWrapper() {
+        await boardScaleUpAnimation();
         await memoryBlockAnimation();
         await quizBlockAnimation();
+      }
+      asyncWrapper();
+    }
+    if (showState === 'game') {
+      async function asyncWrapper() {
+        await boardScaleUpAnimation();
       }
       asyncWrapper();
     }
@@ -56,6 +66,7 @@ const MemoryWrapper = (props) => {
   }
 
   async function memoryBlockAnimation() {
+    console.log('memory block animation')
     return new Promise((res, rej) => {
       setTimeout(async () => {
         for (let i = 0; i < 16; i += 1) {
@@ -74,15 +85,22 @@ const MemoryWrapper = (props) => {
     });
   }
 
+  const boardScaleUpAnimation = () => {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        res();
+      }, 1000);
+    });
+  }
+
+
   async function quizBlockAnimation() {
+    console.log('quiz block animation')
+
     return new Promise((res, rej) => {
       setShowState('quiz');
-      setTimeout(() => {
+      setTimeout(async () => {
         setShowState('game');
-        const gradientInterval = setInterval(() => setGradientSize((val) => val + 1), 2);
-        setTimeout(() => {
-          clearInterval(gradientInterval);
-        }, 4 * FLAG.GAME.MEMORY.BOARD.ANSWER.SIZE);
         res();
       }, FLAG.GAME.MEMORY.QUIZ_TIME);
     })
@@ -92,22 +110,22 @@ const MemoryWrapper = (props) => {
     <div className='memoryWrapper'>
       {showState === null ? <></> :
         (showState === 'answer' ?
-          <MovingComponent type='fadeIn' duration='500ms' iteration='1'>
+          <MovingComponent type='popIn' duration='1000ms' iteration='1'>
             <MemoryBoard blockInfo={answer} info='ANSWER' />
           </MovingComponent>
           :
           <div className='memoryGameWrapper'>
             {showState === 'game' ?
-              <MovingComponent type='fadeIn' duration='500ms' iteration='1'>
-                <MemoryQuiz quiz={quiz}
+              <MovingComponent type='popIn' duration='1000ms' iteration='1'>
+                <MemoryQuiz quiz={quiz} info='ANSWER'
                   updateGameStage={props.updateGameStage} repeatGameStage={setInit}
-                  blockInfo={answer} size={gradientSize}
+                  blockInfo={answer}
                 />
-              </MovingComponent> : <></>
+              </MovingComponent> :
+              <MovingComponent type='fadeIn' duration='500ms' iteration='1'>
+                <MemoryBoard blockInfo={quiz} info='QUIZ' />
+              </MovingComponent>
             }
-            <MovingComponent type='fadeIn' duration='500ms' iteration='1'>
-              <MemoryBoard blockInfo={quiz} info='QUIZ' />
-            </MovingComponent> : <></>
           </div>
         )
       }
