@@ -8,8 +8,6 @@ remote.initialize()
 
 function createWindow() {
     let win = new BrowserWindow({
-        width: 1920,
-        height: 1080,
         fullscreen: true,
         title: "BlackGhost",
         frame: false,

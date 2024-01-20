@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import '../../../css/modules/Memory.css';
-import MemoryBoard from './MemoryBoard';
-import { FLAG } from '../../Flag.js';
-import MovingComponent from 'react-moving-text';
-import MemoryQuiz from './MemoryQuiz';
-
+import React, { useEffect, useState } from "react";
+import "../../../css/modules/Memory.css";
+import MemoryBoard from "./MemoryBoard";
+import { FLAG } from "../../Flag.js";
+import MovingComponent from "react-moving-text";
+import MemoryQuiz from "./MemoryQuiz";
 
 const getAnswer = () => {
   const answer = [];
@@ -12,11 +11,12 @@ const getAnswer = () => {
   answer.sort(() => Math.random() - 0.5);
 
   const quiz = [];
-  for (let i = 0; i < 16; i += 1) quiz.push({ key: answer[i].key, index: i, visible: true });
-  //quiz.sort(() => Math.random() - 0.5);
+  for (let i = 0; i < 16; i += 1)
+    quiz.push({ key: answer[i].key, index: i, visible: true });
+  quiz.sort(() => Math.random() - 0.5);
 
   return [answer, quiz.slice(0, 6)];
-}
+};
 
 const MemoryWrapper = (props) => {
   const [answer, setAnswer] = useState([]);
@@ -29,20 +29,23 @@ const MemoryWrapper = (props) => {
     const [newAnswer, newQuiz] = getAnswer();
     setAnswer(newAnswer);
     setQuiz(newQuiz);
-    console.log(newQuiz);
+    console.log(
+      "First Stage Answer: ",
+      newQuiz.map((el) => el.index)
+    );
   }, [init]);
 
   useEffect(() => {
     if (answer && !showState) {
       async function asyncWrapper() {
-        setShowState('answer');
+        setShowState("answer");
       }
       asyncWrapper();
     }
   }, [answer]);
 
   useEffect(() => {
-    if (showState === 'answer') {
+    if (showState === "answer") {
       async function asyncWrapper() {
         await boardScaleUpAnimation();
         await memoryBlockAnimation();
@@ -50,7 +53,7 @@ const MemoryWrapper = (props) => {
       }
       asyncWrapper();
     }
-    if (showState === 'game') {
+    if (showState === "game") {
       async function asyncWrapper() {
         await boardScaleUpAnimation();
       }
@@ -58,20 +61,22 @@ const MemoryWrapper = (props) => {
     }
   }, [showState]);
 
-  const updateAnswer = (index, visible) => { // update answer of specific key
+  const updateAnswer = (index, visible) => {
+    // update answer of specific key
     const result = [];
-    for (let i = 0; i < 16; i += 1)result.push({ ...answer[i] });
+    for (let i = 0; i < 16; i += 1) result.push({ ...answer[i] });
     result[index].visible = visible;
     setAnswer(result);
-  }
+  };
 
   async function memoryBlockAnimation() {
-    console.log('memory block animation')
+    // console.log("memory block animation");
     return new Promise((res, rej) => {
       setTimeout(async () => {
         for (let i = 0; i < 16; i += 1) {
           await new Promise((resolve, rej) => {
-            setTimeout(() => { // updateAnswer executed asynchronously, make some delay
+            setTimeout(() => {
+              // updateAnswer executed asynchronously, make some delay
               updateAnswer(i, true);
             }, 100);
             setTimeout(() => {
@@ -91,45 +96,47 @@ const MemoryWrapper = (props) => {
         res();
       }, 1000);
     });
-  }
-
+  };
 
   async function quizBlockAnimation() {
-    console.log('quiz block animation')
+    // console.log("quiz block animation");
 
     return new Promise((res, rej) => {
-      setShowState('quiz');
+      setShowState("quiz");
       setTimeout(async () => {
-        setShowState('game');
+        setShowState("game");
         res();
       }, FLAG.GAME.MEMORY.QUIZ_TIME);
-    })
+    });
   }
 
   return (
-    <div className='memoryWrapper'>
-      {showState === null ? <></> :
-        (showState === 'answer' ?
-          <MovingComponent type='popIn' duration='1000ms' iteration='1'>
-            <MemoryBoard blockInfo={answer} info='ANSWER' />
-          </MovingComponent>
-          :
-          <div className='memoryGameWrapper'>
-            {showState === 'game' ?
-              <MovingComponent type='popIn' duration='1000ms' iteration='1'>
-                <MemoryQuiz quiz={quiz} info='ANSWER'
-                  updateGameStage={props.updateGameStage} repeatGameStage={setInit}
-                  blockInfo={answer}
-                />
-              </MovingComponent> :
-              <MovingComponent type='fadeIn' duration='500ms' iteration='1'>
-                <MemoryBoard blockInfo={quiz} info='QUIZ' />
-              </MovingComponent>
-            }
-          </div>
-        )
-      }
-
+    <div className="memoryWrapper">
+      {showState === null ? (
+        <></>
+      ) : showState === "answer" ? (
+        <MovingComponent type="popIn" duration="1000ms" iteration="1">
+          <MemoryBoard blockInfo={answer} info="ANSWER" />
+        </MovingComponent>
+      ) : (
+        <div className="memoryGameWrapper">
+          {showState === "game" ? (
+            <MovingComponent type="popIn" duration="1000ms" iteration="1">
+              <MemoryQuiz
+                quiz={quiz}
+                info="ANSWER"
+                updateGameStage={props.updateGameStage}
+                repeatGameStage={setInit}
+                blockInfo={answer}
+              />
+            </MovingComponent>
+          ) : (
+            <MovingComponent type="fadeIn" duration="500ms" iteration="1">
+              <MemoryBoard blockInfo={quiz} info="QUIZ" />
+            </MovingComponent>
+          )}
+        </div>
+      )}
     </div>
   );
 };

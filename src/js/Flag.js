@@ -16,8 +16,8 @@ export const FLAG = {
 	},
 	GAME: {
 		MEMORY: {
-			SHOW_TIME: 3000,
-			QUIZ_TIME: 2000,
+			SHOW_TIME: 900,
+			QUIZ_TIME: 4500,
 			FADE_TIME: 500,
 			WRONG_TIME: 600,
 			BOARD: {

@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# BlackGhost
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+BlackGhost is a web-based puzzle game built for Korean reality game show, [Treasure Hunt](https://g.co/kgs/mBw3WFN).
 
-## Available Scripts
+<img title="readme-game1" alt="readme-game1" src="public/assets/images/readme-game1.png" width="400px">
+<img title="readme-game2" alt="readme-game2" src="public/assets/images/readme-game2.png" width="400px">
+<img title="readme-game3" alt="readme-game3" src="public/assets/images/readme-game3.png" width="400px">
+<em>Some parts of game show</em>
 
-In the project directory, you can run:
+<br/>
+It consists of two stages, decrypting pattern code and alphabet code for each. All design assets were provided from broadcasting company.
 
-### `npm start`
+<img title="readme-app" alt="readme-app" src="public/assets/images/readme-app.png" width="300px">
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+It is implemented based on **React**, packed as an app by **Electron**. To be utilized in a game, its auto-play and termination logic have been developed with a shell script using **Automator** to run in the background process.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+By executing background process, the game will be auto played when usb is insterted. Then it will show 2 clue images for next step, after the game termination.
 
-### `npm test`
+## Test in a browser
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Execute following command to run with your local environment **http://localhost:3000**.
 
-### `npm run build`
+### `npm run start`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For your convenience, the answers will be printed in the console.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img title="readme-answer" alt="readme-answer" src="public/assets/images/readme-answer.png" width="300px">
+<em>For the first stage, click the corresponding patterns in a order. Indices are start with 0</em>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Test as an app
 
-### `npm run eject`
+1. Download program files from [here]("https://drive.google.com/drive/folders/1qoyDKnirwO-UgYFUYT7PdCrX-oYPNxAS?usp=drive_link").
+2. Locate all files in the **Downloads** folder.
+3. Remove program attribute by executing following command. This process is necessary to open unauthorized program with macos.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   `xattr -cr 'Downloads/Background.app'`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   `xattr -cr 'Downloads/BlackGhost.app'`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+4. Move 2 program files (Background, BlackGhost) to **Applications** folder.
+5. Execute background program. It will start the game when usb is inserted.
+   <em>Execute condition will be vary by devices, since it counts the number of ports.</em>
