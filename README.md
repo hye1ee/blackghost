@@ -32,7 +32,7 @@ For your convenience, the answers will be printed in the console.
 
 ## Test as an app
 
-1. Download program files from [here]("https://drive.google.com/drive/folders/1qoyDKnirwO-UgYFUYT7PdCrX-oYPNxAS?usp=drive_link").
+1. Download program files from [here](https://drive.google.com/drive/folders/1qoyDKnirwO-UgYFUYT7PdCrX-oYPNxAS?usp=drive_link).
 2. Locate all files in the **Downloads** folder.
 3. Remove program attribute by executing following command. This process is necessary to open unauthorized program with macos.
 
