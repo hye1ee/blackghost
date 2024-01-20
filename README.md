@@ -5,9 +5,11 @@ BlackGhost is a web-based puzzle game built for Korean reality game show, [Treas
 <img title="readme-game1" alt="readme-game1" src="public/assets/images/readme-game1.png" width="400px">
 <img title="readme-game2" alt="readme-game2" src="public/assets/images/readme-game2.png" width="400px">
 <img title="readme-game3" alt="readme-game3" src="public/assets/images/readme-game3.png" width="400px">
-<em>Some parts of game show</em>
+<em style="color:gray">Some parts of game show</em>  
 
 <br/>
+
+
 It consists of two stages, decrypting pattern code and alphabet code for each. All design assets were provided from broadcasting company.
 
 <img title="readme-app" alt="readme-app" src="public/assets/images/readme-app.png" width="300px">
@@ -26,7 +28,7 @@ Execute following command to run with your local environment **http://localhost:
 For your convenience, the answers will be printed in the console.
 
 <img title="readme-answer" alt="readme-answer" src="public/assets/images/readme-answer.png" width="300px">
-<em>For the first stage, click the corresponding patterns in a order. Indices are start with 0</em>
+<em>For the first stage, click the corresponding patterns in an order. Indices are start with 0.</em>
 
 ## Test as an app
 
